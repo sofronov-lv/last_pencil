@@ -1,7 +1,12 @@
 import random
 
 
-def user_walks(remaining_pencils):
+def user_walks(remaining_pencils: int) -> int:
+    """
+    The user's move is being executed, only numbers from 1 to 3 can be selected
+    :param remaining_pencils: the number of pencils left in the game
+    :return: number of pencils after user selection
+    """
     while True:
         try:
             selected_pencils = int(input())
@@ -17,7 +22,12 @@ def user_walks(remaining_pencils):
                 print("Possible values: '1', '2' or '3'")
 
 
-def winning_bot_strategy(pencils_left):
+def winning_bot_strategy(pencils_left: int) -> int:
+    """
+    The bot's move is being executed, only numbers from 1 to 3 can be selected
+    :param pencils_left: the number of pencils left in the game
+    :return: number of pencils after bot selection
+    """
     lower_bound = 0
     upper_bound = 0
 
@@ -31,7 +41,12 @@ def winning_bot_strategy(pencils_left):
         return random_bot_walks(pencils_left)
 
 
-def random_bot_walks(remaining_pencils):
+def random_bot_walks(remaining_pencils: int) -> int:
+    """
+    It is executed only when the strategy does not work
+    :param remaining_pencils: the number of pencils left in the game
+    :return: random selection of the number of pencils by the bot
+    """
     if remaining_pencils == 1:
         return 1
     return random.randint(1, 3)
