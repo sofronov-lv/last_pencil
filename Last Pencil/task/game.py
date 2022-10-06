@@ -31,7 +31,7 @@ def winning_bot_strategy(pencils_left: int) -> int:
     lower_bound = 0
     upper_bound = 0
 
-    for i in range(-3, pencils_left, 4):
+    for i in range(1, pencils_left, 4):
         lower_bound = i
         upper_bound = lower_bound + 4
 
@@ -52,41 +52,46 @@ def random_bot_walks(remaining_pencils: int) -> int:
     return random.randint(1, 3)
 
 
-print("How many pencils would you like to use:")
-while True:
-    try:
-        pencils = int(input())
-    except ValueError:
-        print("The number of pencils should be numeric")
-    else:
-        if pencils > 0:
+def main() -> None:
+    print("How many pencils would you like to use:")
+    while True:
+        try:
+            pencils = int(input())
+        except ValueError:
+            print("The number of pencils should be numeric")
+        else:
+            if pencils > 0:
+                break
+            else:
+                print("The number of pencils should be positive")
+
+    user, bot = "John", "Jack"
+    print(f"Who will be the first ({user}, {bot}):")
+
+    while True:
+        player = input()
+        if player in (user, bot):
             break
         else:
-            print("The number of pencils should be positive")
+            print(f"Choose between '{user}' and '{bot}'")
 
-user, bot = "John", "Jack"
-print(f"Who will be the first ({user}, {bot}):")
+    while pencils > 0:
+        print("|" * pencils)
+        print(f"{player}'s turn:")
 
-while True:
-    player = input()
-    if player in (user, bot):
-        break
-    else:
-        print(f"Choose between '{user}' and '{bot}'")
+        if player == bot:
+            choosing_a_bot = winning_bot_strategy(pencils)
+            print(choosing_a_bot)
+            pencils -= choosing_a_bot
+            player = user
+        else:
+            pencils -= user_walks(pencils)
+            player = bot
 
-while pencils > 0:
-    print("|" * pencils)
-    print(f"{player}'s turn:")
+        if not pencils:
+            print(f"{player} won!")
+            exit()
 
-    if player == bot:
-        choosing_a_bot = winning_bot_strategy(pencils)
-        print(choosing_a_bot)
-        pencils -= choosing_a_bot
-        player = user
-    else:
-        pencils -= user_walks(pencils)
-        player = bot
 
-    if not pencils:
-        print(f"{player} won!")
-        exit()
+if __name__ == "__main__":
+    main()
