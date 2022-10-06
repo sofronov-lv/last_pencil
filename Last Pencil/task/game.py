@@ -24,7 +24,7 @@ def user_walks(remaining_pencils: int) -> int:
 
 def winning_bot_strategy(pencils_left: int) -> int:
     """
-    The bot's move is being executed, only numbers from 1 to 3 can be selected
+    The bot move is being executed, only numbers from 1 to 3 can be selected
     :param pencils_left: the number of pencils left in the game
     :return: number of pencils after bot selection
     """
