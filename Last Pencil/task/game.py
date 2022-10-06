@@ -12,8 +12,7 @@ def initial_number_of_pencils() -> int:
         else:
             if pencils > 0:
                 return pencils
-            else:
-                print("The number of pencils should be positive")
+            print("The number of pencils should be positive")
 
 
 def choosing_the_first_player(user: str, bot: str) -> str:
@@ -23,8 +22,7 @@ def choosing_the_first_player(user: str, bot: str) -> str:
         name = input()
         if name in (user, bot):
             return name
-        else:
-            print(f"Choose between '{user}' and '{bot}'")
+        print(f"Choose between '{user}' and '{bot}'")
 
 
 def user_walks(remaining_pencils: int) -> int:
@@ -42,8 +40,7 @@ def user_walks(remaining_pencils: int) -> int:
             if selected_pencils in (1, 2, 3):
                 if remaining_pencils - selected_pencils >= 0:
                     return selected_pencils
-                else:
-                    print("Too many pencils were taken")
+                print("Too many pencils were taken")
             else:
                 print("Possible values: '1', '2' or '3'")
 
@@ -54,12 +51,13 @@ def bot_walks(pencils_left: int) -> int:
     :param: pencils_left: the number of pencils left in the game
     :return: number of pencils after bot selection
     """
+    step = 4
     lower_bound = 0
-    upper_bound = 0
 
-    for i in range(1, pencils_left, 4):
+    for i in range(1, pencils_left, step):
         lower_bound = i
-        upper_bound = lower_bound + 4
+
+    upper_bound = lower_bound + step
 
     if lower_bound < pencils_left < upper_bound:
         number_of_pencils = pencils_left - lower_bound
